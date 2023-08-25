@@ -69,13 +69,15 @@ pub struct Task {
     pub updated_at: i64, // The timestamp when the task was last updated
 }
 
+const DISCRIMINATOR: usize = 8;
 const PUBLIC_KEY_LENGTH: usize = 32;
 const BOOL_LENGTH: usize = 1;
 const TEXT_LENGTH: usize = 4 + 400 * 4; // 400 chars
 const TIMESTAMP_LENGTH: usize = 8;
 
 impl Task {
-    const LEN: usize = PUBLIC_KEY_LENGTH + // author
+    const LEN: usize = DISCRIMINATOR + // discriminator
+        PUBLIC_KEY_LENGTH + // author
         BOOL_LENGTH + // is_done
         TEXT_LENGTH +  // text
         TIMESTAMP_LENGTH + // created_at
