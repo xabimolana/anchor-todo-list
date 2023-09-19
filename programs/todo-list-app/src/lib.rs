@@ -36,6 +36,18 @@ pub mod todo_list_app {
        
     }
 
+    pub fn deleting_task(ctx: Context<DeletingTask>) -> Result<()> {
+        let task = &mut ctx.accounts.task;
+        let author = &ctx.accounts.author; // The `author` account
+        let clock = Clock::get().unwrap(); // Getting the current timestamp
+        
+        task.author = *author.key;
+        task.is_done = true;
+        task.updated_at = clock.unix_timestamp;
+        Ok(())
+       
+    }
+
 
 
 
@@ -58,6 +70,12 @@ pub struct UpdatingTask<'info> {
     pub author: Signer<'info>,
 }
 
+#[derive(Accounts)]
+pub struct DeletingTask<'info> {
+    #[account(mut, has_one = author)]
+    pub task: Account<'info, Task>,
+    pub author: Signer<'info>,
+}
 
 
 #[account]
