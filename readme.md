@@ -1,4 +1,3 @@
-Installation
 # Anchor Todo List
 
 Based on the [Building A To Do List with Anchor](https://calyptus.co/lessons/building-a-to-do-list-with-anchor/) lesson, this project shows how to mint your first NFT on the Solana blockchain using [Anchor](https://www.anchor-lang.com/).
@@ -53,7 +52,6 @@ todo_list_app = "<ADD YOUR ADDRESS HERE>"
 6. Update your [`lib.rs`](programs/todo-list-app/src/lib.rs) file by adding the the address generated in step 4 to the `declare_id!()` macro
 
 ```rust
-    // snip
 use anchor_lang::prelude::*;
 
 declare_id!("<PLACE YOUR ADDRESS HERE>");
